@@ -35,11 +35,14 @@
 // 导入axios
 import axios from "axios";
 
-// 1.绑定文本框和下拉框(获取用户需要添加的数据) √
-// 2.拿到数据之后发送ajax请求                 √
-// 3.添加成功后跳转回英雄列表页
+// 组件中获取动态路由中的id --->>$route.paeams.id
+// 路由规则设置props:true,路由自动把id数据传递给组件
+// 在组件中用props:['id']接收
+
 // 导出组件
 export default {
+  //用props接收传过来的id
+  props: ["id"],
   data() {
     return {
       // 文本框属性有多个可以包装成对象的形式
@@ -49,6 +52,21 @@ export default {
         gender: "男"
       }
     };
+  },
+  mounted() {
+    this.getDataById();
+  },
+  methods: {
+    //   根据id获取数据
+    getDataById() {
+      axios.get(`http://localhost:3000/heroes/${this.id}`).then(res => {
+        // console.log(res);
+        const { data, status } = res;
+        if (status == 200) {
+          this.formData = data;
+        }
+      });
+    }
   }
 };
 </script>
