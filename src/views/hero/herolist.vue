@@ -21,8 +21,10 @@
             <td>{{item.name}}</td>
             <td>{{item.gender}}</td>
             <td>
-              <a href="edit.html">编辑</a>
-              &nbsp;&nbsp;
+              <!-- <a href="edit.html">编辑</a> -->
+              <!-- 配置编辑英雄功能导航 -->
+              <!-- <router-link :to="'/hero/edit/'+item.id">编辑</router-link> -->
+              <router-link :to="{name:'heroedit',params:{id:item.id}}">编辑</router-link>&nbsp;&nbsp;
               <a href="javascript:" @click="del(item.id)">删除</a>
             </td>
           </tr>

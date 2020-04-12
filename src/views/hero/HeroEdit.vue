@@ -26,7 +26,7 @@
         </select>
       </div>
       <!-- button标签默认是提交按钮 我们需要阻止默认行为-->
-      <button @click.prevent="add" class="btn btn-success">添加</button>
+      <button class="btn btn-success">提交</button>
     </form>
   </div>
 </template>
@@ -49,19 +49,6 @@ export default {
         gender: "男"
       }
     };
-  },
-  methods: {
-    //  2.拿到数据之后发送ajax请求
-    add() {
-      axios.post("http://localhost:3000/heroes", this.formData).then(res => {
-        // console.log(res);
-        const status = res.status;
-        if (status == 201) {
-          //添加成功后跳转回英雄列表页
-          this.$router.push("/hero");
-        }
-      });
-    }
   }
 };
 </script>
