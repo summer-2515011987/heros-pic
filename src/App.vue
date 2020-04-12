@@ -3,8 +3,12 @@
     <!-- AppHeader -->
     <!-- 3使用AppHeader.vue组件 -->
     <app-header></app-header>
-    <!-- AppSlider -->
-    <app-slider></app-slider>
+    <div class="container-fluid">
+      <!-- AppSlider -->
+      <app-slider></app-slider>
+      <!-- 主内容区域 -->
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -25,12 +29,12 @@ export default {
 </script>
 
 <style>
-#app {
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
+} */
 </style>
