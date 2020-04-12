@@ -51,7 +51,7 @@ export default {
     //  2.拿到数据之后发送ajax请求
     add() {
       this.axios
-        .post("http://localhost:3000/heroes", this.formData)
+        .post("heroes", this.formData)
         .then(res => {
           // console.log(res);
           const status = res.status;

@@ -51,7 +51,7 @@ export default {
     // ----显示列表功能--
     loadData() {
       this.axios
-        .get("http://localhost:3000/heroes")
+        .get("heroes")
         .then(res => {
           // console.log(res);
           // 解构
@@ -77,7 +77,7 @@ export default {
       }
       // 2.发送axios请求,删除数据
       // 模板字符串:不用考虑单双引号的嵌套问题,在模板字符串中使用变量${变量名}
-      this.axios.delete(`http://localhost:3000/heroes/${ID}`).then(res => {
+      this.axios.delete(`heroes/${ID}`).then(res => {
         // console.log(res);
         if (res.status == 200) {
           // alert("删除成功");

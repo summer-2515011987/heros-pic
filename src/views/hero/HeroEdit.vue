@@ -57,7 +57,7 @@ export default {
   methods: {
     //   根据id获取数据
     getDataById() {
-      this.axios.get(`http://localhost:3000/heroes/${this.id}`).then(res => {
+      this.axios.get(`heroes/${this.id}`).then(res => {
         // console.log(res);
         const { data, status } = res;
         if (status == 200) {
@@ -68,7 +68,7 @@ export default {
     upadata() {
       // 发送ajax请求 根据id修改 ,记得传入当前修改的数据
       this.axios
-        .put(`http://localhost:3000/heroes/${this.id}`, this.formData)
+        .put(`heroes/${this.id}`, this.formData)
         .then(res => {
           console.log(res);
           const status = res.status;
