@@ -18,9 +18,9 @@
             <td>{{item.name}}</td>
             <td>{{item.gender}}</td>
             <td>
-              <a href="edit.html">edit</a>
+              <a href="edit.html">编辑</a>
               &nbsp;&nbsp;
-              <a href="javascript:window.confirm('Are you sure?')">delete</a>
+              <a href="javascript:" @click="del(item.id)">删除</a>
             </td>
           </tr>
         </tbody>
@@ -46,6 +46,7 @@ export default {
   },
   // 在methods中定义方法发送ajax请求,在mounted(){}中调用
   methods: {
+    // ----显示列表功能--
     loadData() {
       axios
         .get("http://localhost:3000/heroes")
@@ -55,7 +56,6 @@ export default {
           const { data, status } = res;
           if (status == 200) {
             this.list = data;
-            console.log(this.list);
           } else {
             alert("数据读取失败");
           }
@@ -63,6 +63,26 @@ export default {
         .catch(err => {
           alert("服务器异常" + err);
         });
+    },
+
+    //删除列表功能
+    del(ID) {
+      // 1.提示一下是否删除
+      // 用户点取消的时候是false,!(取反)则为true
+      if (!confirm("确定要删除吗?")) {
+        // 当用户点取消的时候阻止a标签的默认跳转行为(阻止a标签执行)
+        return false;
+      }
+      // 2.发送axios请求,删除数据
+      // 模板字符串:不用考虑单双引号的嵌套问题,在模板字符串中使用变量${变量名}
+      axios.delete(`http://localhost:3000/heroes/${ID}`).then(res => {
+        // console.log(res);
+        if (res.status == 200) {
+          // alert("删除成功");
+          // 3.刷新页面
+          this.loadData();
+        }
+      });
     }
   }
 };
