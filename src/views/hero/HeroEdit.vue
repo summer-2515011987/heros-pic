@@ -1,11 +1,11 @@
 <template>
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h2 class="sub-header">添加英雄</h2>
+    <h2 class="sub-header">修改英雄</h2>
     <form>
       <div class="form-group">
         <label for="text">姓名</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
           id="txtName"
           v-model="formData.name"
@@ -26,7 +26,7 @@
         </select>
       </div>
       <!-- button标签默认是提交按钮 我们需要阻止默认行为-->
-      <button class="btn btn-success">提交</button>
+      <button @click="upadata()" class="btn btn-success">提交</button>
     </form>
   </div>
 </template>
@@ -39,14 +39,15 @@ import axios from "axios";
 // 路由规则设置props:true,路由自动把id数据传递给组件
 // 在组件中用props:['id']接收
 
+//  根据id获取数据,发送axios请求
+
+// 点击提交按钮,提交当前修改
 // 导出组件
 export default {
   //用props接收传过来的id
   props: ["id"],
   data() {
     return {
-      // 文本框属性有多个可以包装成对象的形式
-      // 封装表单数据
       formData: {
         name: "",
         gender: "男"
@@ -66,6 +67,21 @@ export default {
           this.formData = data;
         }
       });
+    },
+    upadata() {
+      // 发送ajax请求 根据id修改 ,记得传入当前修改的数据
+      axios
+        .put(`http://localhost:3000/heroes/${this.id}`, this.formData)
+        .then(res => {
+          console.log(res);
+          const status = res.status;
+          if (status == 200) {
+            //当状态为200的时候修改成功,跳转回英雄列表页
+            this.$router.push("/hero");
+          } else {
+            alert("修改失败");
+          }
+        });
     }
   }
 };
