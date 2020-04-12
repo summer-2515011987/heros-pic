@@ -11,6 +11,9 @@ Vue.use(VueRouter)
 import HeroList from './views/hero/herolist.vue'
 import WeaponList from './views/weapon/weaponlist.vue'
 import EquipList from './views/equip/equiplist.vue'
+
+import HeroAdd from './views/hero/HeroAdd.vue'
+
 // 创建router的实例选项
 const router = new VueRouter({
     // 路由构造函数选项进行全局配置
@@ -20,8 +23,11 @@ const router = new VueRouter({
         { name: 'herolist', path: '/hero', component: HeroList },
         { path: '/', redirect: '/hero' },
         { name: 'weaponlist', path: '/weapon', component: WeaponList },
-        { name: 'equiplist', path: '/equip', component: EquipList }
+        { name: 'equiplist', path: '/equip', component: EquipList },
+        // 配置添加英雄的路由组件
+        { name: 'heroadd', path: 'hero/add', component: HeroAdd }
     ]
+
 })
 // 将router路由对象导出
 export default router
