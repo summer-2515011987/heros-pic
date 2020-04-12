@@ -35,9 +35,6 @@
 </template>
 
 <script>
-// 导入axios
-import axios from "axios";
-
 // 导出组件
 export default {
   data() {
@@ -53,7 +50,7 @@ export default {
   methods: {
     // ----显示列表功能--
     loadData() {
-      axios
+      this.axios
         .get("http://localhost:3000/heroes")
         .then(res => {
           // console.log(res);
@@ -80,7 +77,7 @@ export default {
       }
       // 2.发送axios请求,删除数据
       // 模板字符串:不用考虑单双引号的嵌套问题,在模板字符串中使用变量${变量名}
-      axios.delete(`http://localhost:3000/heroes/${ID}`).then(res => {
+      this.axios.delete(`http://localhost:3000/heroes/${ID}`).then(res => {
         // console.log(res);
         if (res.status == 200) {
           // alert("删除成功");

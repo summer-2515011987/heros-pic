@@ -32,9 +32,6 @@
 </template>
 
 <script>
-// 导入axios
-import axios from "axios";
-
 // 1.绑定文本框和下拉框(获取用户需要添加的数据) √
 // 2.拿到数据之后发送ajax请求                 √
 // 3.添加成功后跳转回英雄列表页
@@ -53,14 +50,16 @@ export default {
   methods: {
     //  2.拿到数据之后发送ajax请求
     add() {
-      axios.post("http://localhost:3000/heroes", this.formData).then(res => {
-        // console.log(res);
-        const status = res.status;
-        if (status == 201) {
-          //添加成功后跳转回英雄列表页
-          this.$router.push("/hero");
-        }
-      });
+      this.axios
+        .post("http://localhost:3000/heroes", this.formData)
+        .then(res => {
+          // console.log(res);
+          const status = res.status;
+          if (status == 201) {
+            //添加成功后跳转回英雄列表页
+            this.$router.push("/hero");
+          }
+        });
     }
   }
 };
