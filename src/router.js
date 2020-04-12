@@ -16,8 +16,10 @@ import HeroAdd from './views/hero/HeroAdd.vue'
 
 // 创建router的实例选项
 const router = new VueRouter({
-    // 路由构造函数选项进行全局配置
-    linkExactActiveClass: "active",
+    // // 路由构造函数选项进行全局配置
+    // linkExactActiveClass: "active",
+
+    linkActiveClass: "active",
     // 配置路由规则
     routes: [
         { name: 'herolist', path: '/hero', component: HeroList },
@@ -25,7 +27,7 @@ const router = new VueRouter({
         { name: 'weaponlist', path: '/weapon', component: WeaponList },
         { name: 'equiplist', path: '/equip', component: EquipList },
         // 配置添加英雄的路由组件
-        { name: 'heroadd', path: 'hero/add', component: HeroAdd }
+        { name: 'heroadd', path: '/hero/add', component: HeroAdd }
     ]
 
 })
